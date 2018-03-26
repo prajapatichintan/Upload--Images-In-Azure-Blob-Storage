@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    var images = ViewBag.ImgName;
+}
+
+<div class="jumbotron">
+    <h1>Demo Project</h1>
+    <p class="lead">Add Watermark Text and Image to Photo  using C#</p>
+</div>
+<div>
+    @using (Html.BeginForm("UploadImages", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        <label>Select image to upload:</label>
+        <input type="file" name="fileToUpload" id="fileToUpload" multiple>
+        <input type="submit" value="Upload Image" name="submit">
+
+    }
+</div>
+@if (images != null)
+{
+    foreach (var imgUrl in images)
+    {
+        <div>
+            <img src="@imgUrl.ImageUrl" />
+        </div>
+    }
+
+}
